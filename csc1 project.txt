@@ -39,8 +39,8 @@ for(; numGuesses > gameOver; numGuesses--){
 }
 //game over statement 
 if (numGuesses == gameOver){
-    System.out.println(userName + ", You have failed");
-    System.out.println("All attempts have been used, to try again please restart the program.");
+   System.out.println(userName + ", You have failed the correct number is " + generatedNum + ".");
+   System.out.println("All attempts have been used, to try again please restart the program.");
 }
 //close scanner function 
 scnr.close(); 
