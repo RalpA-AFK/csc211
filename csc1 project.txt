@@ -1,0 +1,48 @@
+import java.lang.Math;
+import java.util.Scanner; 
+public class Main
+{
+	public static void main(String[] args) {
+	    
+//scanner decleration
+
+Scanner scnr = new Scanner(System.in);
+    int numGuesses = 5;
+    int gameOver = 0;
+    
+//game intro 
+
+    System.out.println("Welcome to Number guesser. \nTry your best to guess the right number.");
+    System.out.println("What can I call you by ?");
+	String userName = scnr.nextLine(); 
+	System.out.println("ok " + userName + " your goal in this game is to guess the correct number in " + numGuesses + " tries.");
+	System.out.println("The range of the number generated is 1 to 10.");
+//random num generator
+
+    int min = 1;
+    int max = 10;
+    int range = max - min + 1; 
+    int generatedNum = (int)(Math.random() * range) + min;	
+	    
+//loop
+for(; numGuesses > gameOver; numGuesses--){
+    System.out.println("What do you think the generated number is?");
+    int guessedNum = scnr.nextInt();
+    if (guessedNum < generatedNum){
+        System.out.println("You have guessed too low.\n" + (numGuesses - 1) + " guesses are left.");
+    } else if (guessedNum > generatedNum){
+        System.out.println("You have guessed too high.\n" + (numGuesses - 1) + " guesses are left.");
+    } else{
+        System.out.println("Congrats you have guessed the correct number. ");
+        break;
+        }
+}
+//game over statement 
+if (numGuesses == gameOver){
+    System.out.println(userName + ", You have failed");
+    System.out.println("All attempts have been used, to try again please restart the program.");
+}
+//close scanner function 
+scnr.close(); 
+	}
+}
