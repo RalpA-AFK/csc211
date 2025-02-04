@@ -17,6 +17,7 @@ Scanner scnr = new Scanner(System.in);
 	String userName = scnr.nextLine(); 
 	System.out.println("ok " + userName + " your goal in this game is to guess the correct number in " + numGuesses + " tries.");
 	System.out.println("The range of the number generated is 1 to 10.");
+
 //random num generator
 
     int min = 1;
@@ -25,6 +26,7 @@ Scanner scnr = new Scanner(System.in);
     int generatedNum = (int)(Math.random() * range) + min;	
 	    
 //loop
+
 for(; numGuesses > gameOver; numGuesses--){
     System.out.println("What do you think the generated number is?");
     int guessedNum = scnr.nextInt();
@@ -42,7 +44,9 @@ if (numGuesses == gameOver){
    System.out.println(userName + ", You have failed the correct number is " + generatedNum + ".");
    System.out.println("All attempts have been used, to try again please restart the program.");
 }
+
 //close scanner function 
+
 scnr.close(); 
 	}
 }
