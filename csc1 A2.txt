@@ -1,0 +1,129 @@
+import java.util.Scanner;
+import java.util.ArrayList;
+/*
+Create a class called Bank. It should have a variable for amount,
+a method for deposit and a method for withdrawal.
+There should also be an array of doubles that keeps track of every
+deposit or withdrawal.  Create a method called listInteractions
+that prints the array of deposits and withdrawals. The deposits
+should be positive and the withdrawals should be negative.
+*/
+
+public class Bank
+{
+	private double amount;
+	private ArrayList<Double> transactions;
+	public Bank() {
+		this.amount = 0.0;
+		this.transactions = new ArrayList<>();
+	}
+
+	public void withdrawals(double amt) {
+
+		if (amt > 0 && amt <= amount ) {
+			amount -= amt;
+			transactions.add(-amt);
+			System.out.println("withdrew: $" + amt);
+		} else {
+			System.out.println("Error, insufficient funds.");
+		}
+	}
+	public void deposits(double amt) {
+
+		if (amt > 0 ) {
+			amount += amt;
+			transactions.add(amt);
+			System.out.println("Deposited: $" + amt);
+		} else {
+			System.out.println("Error, insufficient funds.");
+		}
+	}
+	public void listInteractions() {
+
+		if(transactions.isEmpty()) {
+			System.out.println("No transactions made currently.");
+		} else {
+			for(int i = 0; i < transactions.size(); i++) {
+				double transaction = transactions.get(i);
+				System.out.println(transaction);
+			}
+		}
+	}
+	public static void main(String[] args) {
+
+		Scanner scnr = new Scanner(System.in);
+		Bank USAA = new Bank();
+		int choice = 0;
+		boolean confirm = false;
+		boolean continueBanking = true;
+
+		while (continueBanking == true) {
+		     try {
+                // Wait for 2 seconds before showing the menu
+                Thread.sleep(1500);
+            } catch (InterruptedException e) {
+                System.out.println("Unexpected interruption.");
+            }
+			System.out.println("Welcome to USAA\n --- Bank Menu ---");
+			System.out.println("1. View account Balance");
+			System.out.println("2. Deposit to account ");
+			System.out.println("3. Withdraw from account");
+			System.out.println("4. View transaction history");
+			System.out.println("5. Exit menu");
+			System.out.println("Write the number of the action you would like to do.");
+			choice = scnr.nextInt();
+			System.out.println("you have chosen " + choice + " is this correct? (true/false)");
+
+			confirm = scnr.nextBoolean();
+
+			if(confirm == true) {
+				switch (choice) {
+				case 1: //calls the current balance using the this.amount call in the bank method 
+					System.out.println("Your current account balance is " + USAA.amount);
+					System.out.print("\n");
+					break;
+				case 2://calls the deposit method, scans user input 
+					System.out.println("What is the amount you would like to deposit? (single decimal or integer)");
+					double depositAmt = scnr.nextInt();
+					System.out.println("You want to deposit: $" + depositAmt + " is that correct? (true/false)");
+					boolean depositConfirm = scnr.nextBoolean();
+					if(depositConfirm == true) {
+						USAA.deposits(depositAmt);
+					} else {
+					   System.out.println("What is the amount you would like to deposit? (single decimal or integer)");
+					   depositAmt = scnr.nextInt();
+					   USAA.deposits(depositAmt);
+					}
+					System.out.print("\n");
+					break;
+				case 3:
+					System.out.println("What is the amount you would like to withdraw? (single decimal or integer)");
+					double withdrawalAmt = scnr.nextInt();
+					System.out.println("You want to withdraw: $" + withdrawalAmt + " is that correct? (true/false)");
+					boolean withdrawalConfirm = scnr.nextBoolean();
+					if(withdrawalConfirm == true) {
+						USAA.withdrawals(withdrawalAmt);
+					} else {
+					    System.out.println("What is the amount you would like to withdraw? (single decimal or integer)");
+					    withdrawalAmt = scnr.nextInt();
+					    USAA.withdrawals(withdrawalAmt);
+					}
+					System.out.print("\n");
+					break;
+				case 4:
+					USAA.listInteractions();
+					System.out.print("\n");
+					break;
+				case 5:
+					System.out.println("Thank you for banking with USAA");
+					continueBanking = false;
+					System.out.print("\n");
+					break;
+				default :
+                    System.out.println("Invalid input, try again.");
+					break;
+				}
+			} 
+		}
+	}
+}
