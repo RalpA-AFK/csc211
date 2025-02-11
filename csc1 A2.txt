@@ -56,7 +56,7 @@ public class Bank
 		int choice = 0;
 		boolean confirm = false;
 		boolean continueBanking = true;
-
+//start of looping menu 
 		while (continueBanking == true) {
 		     try {
                 // Wait for 2 seconds before showing the menu
@@ -75,7 +75,7 @@ public class Bank
 			System.out.println("you have chosen " + choice + " is this correct? (true/false)");
 
 			confirm = scnr.nextBoolean();
-
+//The menu selection process
 			if(confirm == true) {
 				switch (choice) {
 				case 1: //calls the current balance using the this.amount call in the bank method 
@@ -96,7 +96,7 @@ public class Bank
 					}
 					System.out.print("\n");
 					break;
-				case 3:
+				case 3://calls the withdrawal method, scans user input 
 					System.out.println("What is the amount you would like to withdraw? (single decimal or integer)");
 					double withdrawalAmt = scnr.nextInt();
 					System.out.println("You want to withdraw: $" + withdrawalAmt + " is that correct? (true/false)");
@@ -110,16 +110,16 @@ public class Bank
 					}
 					System.out.print("\n");
 					break;
-				case 4:
+				case 4://calls the list for all withdraws and deposits made
 					USAA.listInteractions();
 					System.out.print("\n");
 					break;
-				case 5:
+				case 5://breaks menu looping 
 					System.out.println("Thank you for banking with USAA");
 					continueBanking = false;
 					System.out.print("\n");
 					break;
-				default :
+				default ://returns to menu upon invalid input
                     System.out.println("Invalid input, try again.");
 					break;
 				}
