@@ -1,0 +1,114 @@
+import java.util.Arrays;
+
+class Automobile implements Comparable<Automobile> {
+    String model;
+    int year;
+    String brand;
+
+    // Constructor
+    Automobile(String model, int year, String brand) {
+        this.model = model;
+        this.year = year;
+        this.brand = brand;
+    }
+
+    // Methods for car actions
+    public void honk() {
+        System.out.println("honk");
+    }
+
+    public void accelerate() {
+        System.out.println("Car is accelerating");
+    }
+
+    public void stop() {
+        System.out.println("Car has stopped.");
+    }
+
+    public void reverse() {
+        System.out.println("Car is now in reverse.");
+    }
+
+    // compareTo method (compares brand, then model, then year)
+    @Override
+    public int compareTo(Automobile other) {
+        int brandComparison = this.brand.compareToIgnoreCase(other.brand);
+        if (brandComparison != 0) {
+            return brandComparison;
+        }
+
+        int modelComparison = this.model.compareToIgnoreCase(other.model);
+        if (modelComparison != 0) {
+            return modelComparison;
+        }
+
+        return Integer.compare(this.year, other.year);
+    }
+
+    // toString method 
+    @Override
+    public String toString() {
+        return brand + " " + model + " (" + year + ")";
+    }
+}
+
+// child of Automobile
+class JunkCar extends Automobile {
+    JunkCar(String model, int year, String brand) {
+        super(model, year, brand);
+    }
+}
+
+class SportsCar extends Automobile {
+    SportsCar(String model, int year, String brand) {
+        super(model, year, brand);
+    }
+}
+
+class Car extends Automobile {
+    Car(String model, int year, String brand) {
+        super(model, year, brand);
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        // Creating Automobile objects
+        Car car1 = new Car("C300", 2017, "Mercedes");
+        SportsCar car2 = new SportsCar("488", 2022, "Ferrari");
+        JunkCar car3 = new JunkCar("Escort", 1995, "Ford");
+        Car car4 = new Car("C300", 2017, "Mercedes"); //duplicate to test equality
+        SportsCar car5 = new SportsCar("Mustang", 2020, "Ford");
+
+        // Printing car details 
+        System.out.println("Before sorting:");
+        System.out.println(car1);
+        System.out.println(car2);
+        System.out.println(car3);
+        System.out.println(car4);
+        System.out.println(car5);
+
+        // Comparing cars 
+        System.out.println("\nComparing cars:");
+        System.out.println(car1 + " vs " + car2 + " → " + car1.compareTo(car2));
+        System.out.println(car2 + " vs " + car3 + " → " + car2.compareTo(car3));
+        System.out.println(car1 + " vs " + car4 + " → " + car1.compareTo(car4));
+
+        // Sorting cars
+        Automobile[] cars = {car1, car2, car3, car4, car5};
+        Arrays.sort(cars);
+
+        // Printing sorted cars
+        System.out.println("\nSorted cars (brand, model, year):");
+        for (Automobile car : cars) {
+            System.out.println(car);
+        }
+
+        // Testing Car functions
+        System.out.println("\nTesting Car Commands:");
+        car1.honk();
+        car1.accelerate();
+        car1.stop();
+        car1.reverse();
+    }
+}
