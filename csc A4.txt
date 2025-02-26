@@ -1,0 +1,43 @@
+class shape {
+    int sideCount; 
+    
+    public shape(int sideCount){
+        this.sideCount = sideCount; 
+    }
+    
+    public void setsideCount(int sideCount){
+        this.sideCount = sideCount; 
+    }
+    
+    public int getsideCount(){
+        return this.sideCount; 
+    }
+}
+class circle extends shape { 
+   public circle (int sideCount){
+        super(sideCount);
+   
+   }
+  
+}
+
+class rectangle extends shape {
+    public rectangle (int sideCount){
+        super(sideCount );
+   
+   }
+   
+}
+
+public class Main
+{
+	public static void main(String[] args) {
+		circle c1 = new circle(0);
+		
+		rectangle r1 = new rectangle(4);
+		
+		System.out.println("" + c1.getsideCount());
+		System.out.println("" + r1.getsideCount());
+		
+	}
+}
