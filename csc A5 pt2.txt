@@ -1,0 +1,19 @@
+import static org.junit.jupiter.api.Assertions.*;
+import org.junit.jupiter.api.Test;
+
+class TerrariaBossTest {
+    @Test
+    void testTakeDamage() {
+        TerrariaBoss boss = new TerrariaBoss(50);
+        boss.takeDamage(100);
+        assertEquals(400, boss.getHealth());
+        boss.takeDamage(500);
+        assertEquals(0, boss.getHealth());
+    }
+
+    @Test
+    void testAttackPower() {
+        TerrariaBoss boss = new TerrariaBoss(75);
+        assertEquals(75, boss.getAttackPower());
+    }
+}
