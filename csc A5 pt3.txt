@@ -1,0 +1,33 @@
+import java.util.ArrayList;
+import java.util.List;
+
+public class TerrariaPlayer {
+    private int health;
+    private List<String> inventory;
+    private final int MAX_HEALTH = 100;
+
+    public TerrariaPlayer() {
+        this.health = MAX_HEALTH;
+        this.inventory = new ArrayList<>();
+    }
+
+    public void takeDamage(int damage) {
+        this.health = Math.max(0, this.health - damage);
+    }
+
+    public void heal(int amount) {
+        this.health = Math.min(MAX_HEALTH, this.health + amount);
+    }
+
+    public void addItem(String item) {
+        inventory.add(item);
+    }
+
+    public int getHealth() {
+        return health;
+    }
+
+    public List<String> getInventory() {
+        return inventory;
+    }
+}
