@@ -1,0 +1,32 @@
+import static org.junit.jupiter.api.Assertions.*;
+import org.junit.jupiter.api.Test;
+
+class TerrariaPlayerTest {
+    @Test
+    void testTakeDamage() {
+        TerrariaPlayer player = new TerrariaPlayer();
+        player.takeDamage(30);
+        assertEquals(70, player.getHealth());
+        player.takeDamage(100);
+        assertEquals(0, player.getHealth());
+    }
+
+    @Test
+    void testHealing() {
+        TerrariaPlayer player = new TerrariaPlayer();
+        player.takeDamage(50);
+        player.heal(30);
+        assertEquals(80, player.getHealth());
+        player.heal(50);
+        assertEquals(100, player.getHealth());
+    }
+
+    @Test
+    void testInventory() {
+        TerrariaPlayer player = new TerrariaPlayer();
+        player.addItem("Pickaxe");
+        player.addItem("Sword");
+        assertTrue(player.getInventory().contains("Pickaxe"));
+        assertTrue(player.getInventory().contains("Sword"));
+    }
+}
