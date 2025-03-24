@@ -1,0 +1,89 @@
+import java.awt.*;
+import java.awt.event.*;
+
+public class EmployeeForm extends Frame implements ActionListener {
+    
+    private Label nameLabel, idLabel, deptLabel, resultLabel;
+    private TextField nameField, idField, deptField;
+    private Button submitButton;
+    private TextArea resultArea;
+
+    
+    public EmployeeForm() {
+        
+        setTitle("Employee Information Form");
+        setLayout(null);
+        setSize(400, 450);
+        setResizable(false);
+
+        
+        nameLabel = new Label("Name:");
+        nameLabel.setBounds(50, 50, 100, 20);
+        add(nameLabel);
+
+        nameField = new TextField();
+        nameField.setBounds(170, 50, 180, 25);
+        add(nameField);
+
+        idLabel = new Label("Employee ID:");
+        idLabel.setBounds(50, 100, 100, 20);
+        add(idLabel);
+
+        idField = new TextField();
+        idField.setBounds(170, 100, 180, 25);
+        add(idField);
+
+        deptLabel = new Label("Department:");
+        deptLabel.setBounds(50, 150, 100, 20);
+        add(deptLabel);
+
+        deptField = new TextField();
+        deptField.setBounds(170, 150, 180, 25);
+        add(deptField);
+
+        submitButton = new Button("Submit");
+        submitButton.setBounds(150, 200, 100, 30);
+        submitButton.addActionListener(this);
+        add(submitButton);
+
+        resultLabel = new Label("Employee Details:");
+        resultLabel.setBounds(50, 250, 150, 20);
+        add(resultLabel);
+
+        resultArea = new TextArea();
+        resultArea.setBounds(50, 280, 300, 100);
+        resultArea.setEditable(false);
+        add(resultArea);
+
+        
+        addWindowListener(new WindowAdapter() {
+            public void windowClosing(WindowEvent e) {
+                dispose();
+                System.exit(0); 
+            }
+        });
+
+        setVisible(true); 
+    }
+
+   
+    public void actionPerformed(ActionEvent e) {
+        String name = nameField.getText().trim();
+        String empId = idField.getText().trim();
+        String dept = deptField.getText().trim();
+
+        if (name.isEmpty() || empId.isEmpty() || dept.isEmpty()) {
+            resultArea.setText("Please fill in all fields.");
+        } else {
+            String result = "Name: " + name + "\n" +
+                            "Employee ID: " + empId + "\n" +
+                            "Department: " + dept;
+            resultArea.setText(result);
+        }
+    }
+
+   
+    public static void main(String[] args) {
+        new EmployeeForm(); 
+    }
+}
